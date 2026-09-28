@@ -10,7 +10,6 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Mehmet Furkan Güngör — Video & Kurgu',
   description: 'Mehmet Furkan Güngör. Video prodüksiyonu, kurgu, sosyal medya içerikleri ve belgesel projeleri. Eğitim, deneyim ve seçili çalışmalar.',
-  robots: { index: false, follow: false },
 };
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="tr"><body>{children}</body></html>;
