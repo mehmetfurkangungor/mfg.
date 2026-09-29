@@ -33,6 +33,7 @@ export const workVideos = [
   },
   {
     "slug": "zmt-prefabrik-01",
+    "productionNote": "Çekim + Kurgu",
     "client": "ZMT Prefabrik",
     "title": "Üretim tesisi",
     "description": "Çelik yapı üretimi, kaynak ve fabrika içi çalışma görüntülerinden oluşan kurgu.",
@@ -80,6 +81,7 @@ export const workVideos = [
   },
   {
     "slug": "zmt-prefabrik-genel",
+    "productionNote": "Çekim + Kurgu",
     "client": "ZMT Prefabrik",
     "title": "Genel tanıtım",
     "description": "Üretim tesisi, çelik yapı detayları ve örnek ev görüntülerini bir araya getiren yatay tanıtım videosu.",
@@ -95,6 +97,7 @@ export const workVideos = [
   },
   {
     "slug": "raptyle-01",
+    "productionNote": "Çekim + Kurgu",
     "client": "Raptyle",
     "title": "Koleksiyon çekimi",
     "description": "Tişört tasarımlarını, kumaş detaylarını ve model çekimlerini gösteren koleksiyon videosu.",
@@ -125,6 +128,7 @@ export const workVideos = [
   },
   {
     "slug": "leonardo-restoran-01",
+    "productionNote": "Kurgu",
     "client": "Leonardo Restoran",
     "title": "Yemek & sunum",
     "description": "Yemek hazırlığı, tabak sunumları ve restoran ortamını içeren video.",
@@ -140,6 +144,7 @@ export const workVideos = [
   },
   {
     "slug": "leonardo-restoran-02",
+    "productionNote": "Kurgu",
     "client": "Leonardo Restoran",
     "title": "Mekân tanıtımı",
     "description": "Konuşmalı anlatım, restoran, yemek ve etkinlik görüntülerinden oluşan tanıtım videosu.",
@@ -155,6 +160,7 @@ export const workVideos = [
   },
   {
     "slug": "leonardo-restoran-03",
+    "productionNote": "Kurgu",
     "client": "Leonardo Restoran",
     "title": "Kokteyl",
     "description": "Kokteyl hazırlığı ve sunumunu gösteren kısa video.",
@@ -170,6 +176,7 @@ export const workVideos = [
   },
   {
     "slug": "riva-hotel-01",
+    "productionNote": "Kurgu",
     "client": "Riva Hotel",
     "title": "Şehir & otel",
     "description": "Çevredeki mekânları ve otelin dış cephesini gösteren İngilizce altyazılı video.",
@@ -185,6 +192,7 @@ export const workVideos = [
   },
   {
     slug: 'kavi-dis-01', client: 'Kavi Diş', title: 'Dikey video',
+    productionNote: 'Çekim + Kurgu',
     description: 'Kavi Diş için hazırlanan dikey video.',
     driveId: '1G1-BcZde6yfzb3aqYJ9fziaNH04GDTEZ', sourceFileName: 'C0295_1.mp4',
     durationSeconds: undefined, width: undefined, height: undefined,
@@ -192,6 +200,7 @@ export const workVideos = [
   },
   {
     slug: 'laguna-01', client: 'Laguna', title: 'Valiz',
+    productionNote: 'Kurgu',
     description: 'Valiz ürününü gösteren dikey video.',
     driveId: '1YZTykDrtyYTKQrRKfkAFZA0Om_5vB5GL', sourceFileName: 'Laguna 4.mp4',
     durationSeconds: undefined, width: undefined, height: undefined,

@@ -40,9 +40,9 @@ const documentaryEntries: Project[] = [
   {
     ...emptyMedia,
     title: 'Bir İnsan, Bir Esma', slug: 'bir-insan-bir-esma', year: 2026,
-    category: 'Kısa Belgesel', role: ['Çekim', 'Görsel anlatım', 'Kurgu'],
+    category: 'Kısa Belgesel', role: ['Çekim', 'Kurgu'],
     shortDescription: 'Ahşap ve kumaş üzerine yazılar işleyen Cafer Güngör’ü konu alan kısa belgesel.',
-    fullDescription: 'İstanbul’da geçen belgesel, Cafer Güngör’ün ahşap ve kumaş üzerindeki çalışmalarını konu alıyor. Üniversite mezuniyet döneminde hazırladığım projede çekim, görsel anlatım ve kurgu süreçleri üzerinde çalıştım.',
+    fullDescription: 'İstanbul’da geçen belgesel, Cafer Güngör’ün ahşap ve kumaş üzerindeki çalışmalarını konu alıyor. Üniversite mezuniyet döneminde hazırladığım projede çekimden kurguya kadar tüm süreci tek başıma yürüttüm.',
     featured: true, orientation: 'landscape', theme: 'dark',
     videoProvider: 'youtube', client: null, sequence: null,
     videoUrl: 'https://www.youtube.com/watch?v=iXWi7KMfO-I',
@@ -52,7 +52,7 @@ const documentaryEntries: Project[] = [
   {
     ...emptyMedia,
     title: 'Beştaş ve Beyaz Gelinlik', slug: 'bestas-ve-beyaz-gelinlik', year: 2026,
-    category: 'Kısa Belgesel', role: [],
+    category: 'Kısa Belgesel', role: ['Çekim', 'Kurgu'],
     shortDescription: 'Amasya’da, çocuk yaşta evlilik deneyimi yaşamış bir kadının hikâyesini konu alan kısa belgesel.',
     fullDescription: 'Amasya’da geçen belgesel, çocuk yaşta evlilik deneyimi yaşamış bir kadının yaşamını konu alıyor.',
     featured: true, orientation: 'landscape', theme: 'warm',
@@ -64,7 +64,7 @@ const documentaryEntries: Project[] = [
   {
     ...emptyMedia,
     title: 'Dijital Çağda Emek: Babadan Oğula Tornacılık', slug: 'dijital-cagda-emek', year: 2026,
-    category: 'Belgesel', role: ['Yapım', 'Kurgu', 'Kamera'],
+    category: 'Belgesel', role: ['Çekim', 'Kurgu'],
     shortDescription: 'Bir baba ve oğul üzerinden tornacılık mesleğini ve kuşaklar arası meslek aktarımını ele alan belgesel.',
     fullDescription: 'Tornacılık mesleğini sürdüren bir baba ve mesleği öğrenen oğlu üzerinden emeği, zanaatkârlığı ve kuşaklar arası meslek aktarımını ele alan belgesel.',
     featured: true, orientation: 'landscape', theme: 'dark',
@@ -77,6 +77,7 @@ const documentaryEntries: Project[] = [
 
 export const documentaries = ['bestas-ve-beyaz-gelinlik', 'bir-insan-bir-esma', 'dijital-cagda-emek'].map(slug => ({
   ...documentaryEntries.find(project => project.slug === slug)!, equipment: documentaryEquipment,
+  productionNote: 'Çekimden kurguya kadar tüm süreci tek başıma yürüttüm.',
 }));
 
 // Client counts come from verified videos, so filters cannot drift from the data.
