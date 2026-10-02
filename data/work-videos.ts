@@ -32,6 +32,20 @@ export const workVideos = [
     "sourceOrder": 12
   },
   {
+    "slug": "birtech-rfid-erisim",
+    "client": "Birtech",
+    "title": "RFID Kabin Erişimi",
+    "description": "BirSens RFID kabin kilidinin kart doğrulama ve kişi bazlı yetkilendirme özelliklerini anlatan dikey ürün videosu.",
+    "driveId": "1RnQx4FLFRQQI4Cwdxn2ZRSfP8fxZT4Ue",
+    "sourceFileName": "rfid_erisim_reels.mov",
+    "durationSeconds": 20.46,
+    "width": 1080,
+    "height": 1920,
+    "orientation": "portrait",
+    "poster": "/media/work/birtech-rfid-erisim.jpg",
+    "sourceOrder": 15
+  },
+  {
     "slug": "zmt-prefabrik-01",
     "productionNote": "Çekim + Kurgu",
     "client": "ZMT Prefabrik",
