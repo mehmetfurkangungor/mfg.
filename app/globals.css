@@ -209,8 +209,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .about-grid { grid-template-columns: 1fr; gap: 50px; }
   .about-intro { position: static; }
   .lb-body { grid-template-columns: 1fr; align-content: start; overflow-y: auto; gap: 24px; }
-  .lb-media { max-height: none; height: auto; }
-  .lb-frame-portrait { height: 58vh; }
+  .lb-media { max-height: none; height: auto; min-height: auto; }
+  .lb-frame-portrait { height: 52vh; }
   .lb-info { max-width: none; overflow: visible; }
 }
 @media (max-width: 760px) {
