@@ -19,7 +19,7 @@ pnpm start
 
 ## İçerik
 
-- Üç yatay kaydırmalı çalışma satırı: 13 dikey Reels, 1 yatay tanıtım, 3 belgesel.
+- Üç yatay kaydırmalı çalışma satırı: 14 dikey Reels, 1 yatay tanıtım, 3 belgesel.
 - Hakkımda, iş deneyimi, programlar, dijital pazarlama, ekipman ve eğitim.
 - Instagram, YouTube ve e-posta bağlantıları.
 - Mobil ve masaüstüne uyarlanan giriş; yerel portre ve proje kapakları.
