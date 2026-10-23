@@ -67,7 +67,7 @@ function Rail({ row, onOpen }: { row: WorkRow; onOpen: (slug: string, from: HTML
 // Embedded players (Drive in particular) have a minimum layout width and get
 // clipped inside a narrow 9:16 frame on phones. Render the player at a fixed
 // size and scale it down to fit the frame instead.
-const EMBED_SIZE = { portrait: { width: 450, height: 800 }, landscape: { width: 960, height: 540 } } as const;
+const EMBED_SIZE = { portrait: { width: 720, height: 1280 }, landscape: { width: 1280, height: 720 } } as const;
 function ScaledEmbed({ src, title, orientation }: { src: string; title: string; orientation: FlatItem['orientation'] }) {
   const box = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
