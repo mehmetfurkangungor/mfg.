@@ -143,7 +143,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .lb-frame-portrait { height: min(74vh, 100%); aspect-ratio: 9 / 16; }
 .lb-frame-landscape { width: 100%; aspect-ratio: 16 / 9; max-height: 74vh; }
 .lb-frame img { width: 100%; height: 100%; object-fit: contain; }
-.lb-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.lb-embed { position: absolute; inset: 0; overflow: hidden; }
+.lb-embed iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; }
 .lb-media .big-play { cursor: pointer; color: var(--cinema-ink); }
 .lb-media .big-play { position: absolute; inset: 0; margin: auto; width: max-content; height: max-content; display: inline-flex; align-items: center; gap: 12px; padding: 16px 22px; background: var(--cinema); border: 1px solid var(--cinema-ink); font-size: 15px; }
 .lb-media .big-play:hover { background: var(--cinema-ink); color: var(--cinema); }
@@ -210,7 +211,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   .about-intro { position: static; }
   .lb-body { grid-template-columns: 1fr; align-content: start; overflow-y: auto; gap: 24px; }
   .lb-media { max-height: none; height: auto; min-height: auto; }
-  .lb-frame-portrait { height: 52vh; }
+  .lb-frame-portrait { height: min(60vh, calc((100vw - 32px) * 16 / 9)); }
   .lb-info { max-width: none; overflow: visible; }
 }
 @media (max-width: 760px) {

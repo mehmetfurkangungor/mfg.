@@ -64,6 +64,29 @@ function Rail({ row, onOpen }: { row: WorkRow; onOpen: (slug: string, from: HTML
   </section>;
 }
 
+// Embedded players (Drive in particular) have a minimum layout width and get
+// clipped inside a narrow 9:16 frame on phones. Render the player at a fixed
+// size and scale it down to fit the frame instead.
+const EMBED_SIZE = { portrait: { width: 450, height: 800 }, landscape: { width: 960, height: 540 } } as const;
+function ScaledEmbed({ src, title, orientation }: { src: string; title: string; orientation: FlatItem['orientation'] }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0);
+  const size = EMBED_SIZE[orientation];
+  useEffect(() => {
+    const element = box.current;
+    if (!element) return;
+    const update = () => setScale(Math.min(element.clientWidth / size.width, element.clientHeight / size.height));
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    update();
+    return () => observer.disconnect();
+  }, [size.width, size.height]);
+  return <div ref={box} className="lb-embed">
+    <iframe src={src} title={title} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"
+      style={{ width: size.width, height: size.height, transform: `scale(${scale || 0.0001})` }} />
+  </div>;
+}
+
 function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => void; onMove: (step: number) => void }) {
   const item: FlatItem = allWork[index];
   const [playing, setPlaying] = useState(false);
@@ -106,7 +129,7 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
       <div className="lb-media">
         <div className={`lb-frame lb-frame-${item.orientation}`}>
           {playing && source
-            ? <iframe key={item.slug} src={source.src} title={`${item.title} videosu`} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
+            ? <ScaledEmbed key={item.slug} src={source.src} title={`${item.title} videosu`} orientation={item.orientation} />
             : <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.poster} alt={`${item.title} — kapak görseli`} />
