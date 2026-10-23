@@ -68,9 +68,15 @@ function Rail({ row, onOpen }: { row: WorkRow; onOpen: (slug: string, from: HTML
 // clipped inside a narrow 9:16 frame on phones. Render the player at a fixed
 // size and scale it down to fit the frame instead.
 const EMBED_SIZE = { portrait: { width: 720, height: 1280 }, landscape: { width: 1280, height: 720 } } as const;
+// iOS Safari sizes an iframe to its content and ignores CSS transforms on it,
+// so there the player is laid out at the frame size with the classic
+// width: 1px / min-width: 100% fix instead of being scaled.
+const isIOS = () => /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 function ScaledEmbed({ src, title, orientation }: { src: string; title: string; orientation: FlatItem['orientation'] }) {
   const box = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
+  const [ios, setIos] = useState(false);
+  useEffect(() => { setIos(isIOS()); }, []);
   const size = EMBED_SIZE[orientation];
   useEffect(() => {
     const element = box.current;
@@ -81,27 +87,17 @@ function ScaledEmbed({ src, title, orientation }: { src: string; title: string; 
     update();
     return () => observer.disconnect();
   }, [size.width, size.height]);
+  const common = { src, title, allow: 'autoplay; fullscreen; picture-in-picture', allowFullScreen: true, referrerPolicy: 'strict-origin-when-cross-origin' as const };
   return <div ref={box} className="lb-embed">
-    <iframe src={src} title={title} allow="autoplay; fullscreen; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"
-      style={{ width: size.width, height: size.height, transform: `scale(${scale || 0.0001})` }} />
+    {ios
+      ? <iframe {...common} scrolling="no" className="lb-embed-ios" />
+      : <iframe {...common} style={{ width: size.width, height: size.height, transform: `scale(${scale || 0.0001})` }} />}
   </div>;
 }
 
 function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => void; onMove: (step: number) => void }) {
   const item: FlatItem = allWork[index];
   const [playing, setPlaying] = useState(false);
-  // Phones (iOS Safari in particular) ignore the size of an embedded Drive player,
-  // so the video is cropped and its controls overflow. On phones Drive videos
-  // open in Drive's own full-screen player instead.
-  const [phone, setPhone] = useState(false);
-  useEffect(() => {
-    const query = window.matchMedia('(max-width: 760px), (pointer: coarse)');
-    const update = () => setPhone(query.matches);
-    update();
-    query.addEventListener('change', update);
-    return () => query.removeEventListener('change', update);
-  }, []);
-  const openExternally = phone && item.provider === 'google-drive';
   const closeButton = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
   const source = resolveMedia(item.provider, item.url);
@@ -145,9 +141,7 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
             : <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.poster} alt={`${item.title} — kapak görseli`} />
-              {source && (openExternally
-                ? <a className="big-play" href={item.url} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▶</span> Videoyu oynat</a>
-                : <button type="button" className="big-play" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span> Videoyu oynat</button>)}
+              {source && <button type="button" className="big-play" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span> Videoyu oynat</button>}
             </>}
         </div>
       </div>

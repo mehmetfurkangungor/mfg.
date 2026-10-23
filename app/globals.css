@@ -145,6 +145,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .lb-frame img { width: 100%; height: 100%; object-fit: contain; }
 .lb-embed { position: absolute; inset: 0; overflow: hidden; }
 .lb-embed iframe { position: absolute; top: 0; left: 0; border: 0; transform-origin: 0 0; }
+.lb-embed .lb-embed-ios { width: 1px; min-width: 100%; max-width: 100%; height: 100%; transform: none; }
 .lb-media .big-play { cursor: pointer; color: var(--cinema-ink); }
 .lb-media .big-play { position: absolute; inset: 0; margin: auto; width: max-content; height: max-content; display: inline-flex; align-items: center; gap: 12px; padding: 16px 22px; background: var(--cinema); border: 1px solid var(--cinema-ink); font-size: 15px; }
 .lb-media .big-play:hover { background: var(--cinema-ink); color: var(--cinema); }
