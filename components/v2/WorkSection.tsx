@@ -112,7 +112,7 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
       else if (event.key === 'ArrowLeft') onMove(-1);
       else if (event.key === 'ArrowRight') onMove(1);
       else if (event.key === 'Tab' && dialog.current) {
-        const focusable = Array.from(dialog.current.querySelectorAll<HTMLElement>('button, a[href], iframe'));
+        const focusable = Array.from(dialog.current.querySelectorAll<HTMLElement>('button, a[href], iframe, video'));
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
@@ -137,7 +137,10 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
       <div className="lb-media">
         <div className={`lb-frame lb-frame-${item.orientation}`}>
           {playing && source
-            ? <ScaledEmbed key={item.slug} src={source.src} title={`${item.title} videosu`} orientation={item.orientation} />
+            ? (source.kind === 'file'
+              // Site-hosted MP4: the browser's own player, inline on iPhone too.
+              ? <video key={item.slug} className="lb-video" src={source.src} poster={item.poster} controls autoPlay playsInline preload="metadata" />
+              : <ScaledEmbed key={item.slug} src={source.src} title={`${item.title} videosu`} orientation={item.orientation} />)
             : <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.poster} alt={`${item.title} — kapak görseli`} />
@@ -158,7 +161,7 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
         {item.equipment && <dl>
           {['Kamera', 'Lens', 'Gimbal'].map((label, n) => <div key={label}><dt>{label}</dt><dd>{item.equipment?.[n]}</dd></div>)}
         </dl>}
-        <a className="watch" href={item.url} target="_blank" rel="noopener noreferrer">{item.provider === 'youtube' ? 'YouTube’da aç' : 'Drive’da aç'} ↗</a>
+        {item.provider === 'youtube' && <a className="watch" href={item.url} target="_blank" rel="noopener noreferrer">YouTube’da aç ↗</a>}
         <p className="lb-hint">← → ile gezin · Esc ile kapat</p>
       </div>
     </div>
