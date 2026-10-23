@@ -90,6 +90,18 @@ function ScaledEmbed({ src, title, orientation }: { src: string; title: string; 
 function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => void; onMove: (step: number) => void }) {
   const item: FlatItem = allWork[index];
   const [playing, setPlaying] = useState(false);
+  // Phones (iOS Safari in particular) ignore the size of an embedded Drive player,
+  // so the video is cropped and its controls overflow. On phones Drive videos
+  // open in Drive's own full-screen player instead.
+  const [phone, setPhone] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 760px), (pointer: coarse)');
+    const update = () => setPhone(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+  const openExternally = phone && item.provider === 'google-drive';
   const closeButton = useRef<HTMLButtonElement>(null);
   const dialog = useRef<HTMLDivElement>(null);
   const source = resolveMedia(item.provider, item.url);
@@ -133,7 +145,9 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
             : <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.poster} alt={`${item.title} — kapak görseli`} />
-              {source && <button type="button" className="big-play" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span> Videoyu oynat</button>}
+              {source && (openExternally
+                ? <a className="big-play" href={item.url} target="_blank" rel="noopener noreferrer"><span aria-hidden="true">▶</span> Videoyu oynat</a>
+                : <button type="button" className="big-play" onClick={() => setPlaying(true)}><span aria-hidden="true">▶</span> Videoyu oynat</button>)}
             </>}
         </div>
       </div>
